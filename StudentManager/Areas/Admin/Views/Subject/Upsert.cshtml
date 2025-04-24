@@ -1,0 +1,61 @@
+﻿@model SubjectVM
+
+<div class="card box-shadow border-1 mt-4">
+	<div class="card-header bg-secondary bg-gradient modal-lg-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@(Model.Subject.Id!=0 ? "Cập nhật" : "Thêm") môn học</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" class="row">
+			<div class="border p-3">
+				<input asp-for="Subject.Id" type="hidden" />
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Subject.CourseCode" class="form-control border-0 shadow" required>
+					<label asp-for="Subject.CourseCode" class="ms-2"></label>
+					<span asp-validation-for="Subject.CourseCode" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Subject.SubjectName" class="form-control border-0 shadow" required>
+					<label asp-for="Subject.SubjectName" class="ms-2"></label>
+					<span asp-validation-for="Subject.SubjectName" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Subject.Credits" class="form-control border-0 shadow" required>
+					<label asp-for="Subject.Credits" class="ms-2"></label>
+					<span asp-validation-for="Subject.Credits" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<select asp-for="Subject.DepartmentCode" asp-items="@Model.DepartmentList" class="form-select border-0 shadow" required>
+						<option disabled selected>--Chọn bộ môn--</option>
+					</select>
+					<label asp-for="Subject.DepartmentCode" class="ms-2"></label>
+					<span asp-validation-for="Subject.DepartmentCode" class="text-danger p-0"></span>
+				</div>
+
+				<div class="row pt-2">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-secondary form-control">
+							@(Model.Subject.Id != 0 ? "Cập nhật" : "Thêm")
+						</button>
+					</div>
+					<div class="col-6 col-md-3">
+						<a class="btn btn-outline-secondary form-control" asp-action="Index" asp-controller="Subject">
+							Quay lại
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+@section Scripts{
+	@{
+		<partial name = "_ValidationScriptsPartial" />
+	}
+}

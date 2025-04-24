@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using StudentManager.Models;
+using Student.Models;
 
-namespace StudentManager.Controllers
+
+namespace StudentManager.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

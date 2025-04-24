@@ -1,0 +1,61 @@
+﻿@model SpecializationVM
+
+<div class="card box-shadow border-1 mt-4">
+	<div class="card-header bg-secondary bg-gradient modal-lg-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@(Model.Specialization.Id != 0 ? "Cập nhật" : "Thêm") chuyên ngành</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" class="row">
+			<div class="border p-3">
+				<input asp-for="Specialization.Id" hidden />
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Specialization.SpecializationCode" class="form-control border-0 shadow" required>
+					<label asp-for="Specialization.SpecializationCode" class="ms-2"></label>
+					<span asp-validation-for="Specialization.SpecializationCode" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Specialization.SpecializationName" class="form-control border-0 shadow" required>
+					<label asp-for="Specialization.SpecializationName" class="ms-2"></label>
+					<span asp-validation-for="Specialization.SpecializationName" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Specialization.ClassCode" class="form-control border-0 shadow" required>
+					<label asp-for="Specialization.ClassCode" class="ms-2"></label>
+					<span asp-validation-for="Specialization.ClassCode" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<select asp-for="Specialization.MajorsId" asp-items="@Model.MajorsList" class="form-select border-0 shadow" required>
+						<option disabled selected>--Chọn ngành đào tạo--</option>
+					</select>
+					<label asp-for="Specialization.MajorsId" class="ms-2"></label>
+					<span asp-validation-for="Specialization.MajorsId" class="text-danger p-0"></span>
+				</div>
+
+				<div class="row pt-2">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-secondary form-control">
+							@(Model.Specialization.Id != 0 ? "Cập nhật" : "Thêm")
+						</button>
+					</div>
+					<div class="col-6 col-md-3">
+						<a class="btn btn-outline-secondary form-control" asp-action="Index" asp-controller="Specialization">
+							Quay lại
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

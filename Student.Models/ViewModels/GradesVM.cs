@@ -1,0 +1,20 @@
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Student.Models.ViewModels
+{
+    public class GradesVM
+    {
+        public Grades Grades { get; set; }
+        [ValidateNever]
+        public IEnumerable<SelectListItem> StudentsList { get; set; }
+        [ValidateNever]
+        public IEnumerable<SelectListItem> SubjectList { get; set; }
+
+    }
+}

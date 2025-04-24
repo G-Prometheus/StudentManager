@@ -1,0 +1,56 @@
+﻿@model ClassroomVM
+
+<div class="card box-shadow border-1 mt-4">
+	<div class="card-header bg-secondary bg-gradient modal-lg-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@(Model.Classroom.Id != 0 ? "Cập nhật" : "Thêm") lớp</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" class="row">
+			<div class="border p-3">
+				<input asp-for="Classroom.Id" type="hidden" />
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Classroom.ClassId" class="form-control border-0 shadow" required>
+					<label asp-for="Classroom.ClassId" class="ms-2"></label>
+					<span asp-validation-for="Classroom.ClassId" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Classroom.NameClass" class="form-control border-0 shadow" required>
+					<label asp-for="Classroom.NameClass" class="ms-2"></label>
+					<span asp-validation-for="Classroom.NameClass" class="text-danger p-0"></span>
+				</div>
+
+				<div class="form-floating py-2 col-12">
+					<select asp-for="Classroom.Specialization_Id" asp-items="@Model.SpecializationList" class="form-select border-0 shadow" required>
+						<option disabled selected>--Chọn chuyên ngành--</option>
+					</select>
+					<label asp-for="Classroom.Specialization_Id" class="ms-2"></label>
+					<span asp-validation-for="Classroom.Specialization_Id" class="text-danger p-0"></span>
+				</div>
+
+				<div class="row pt-2">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-secondary form-control">
+							@(Model.Classroom.Id != 0 ? "Cập nhật" : "Thêm")
+						</button>
+					</div>
+					<div class="col-6 col-md-3">
+						<a class="btn btn-outline-secondary form-control" asp-action="Index" asp-controller="Classroom">
+							Quay lại
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

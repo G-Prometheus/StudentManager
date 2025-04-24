@@ -1,0 +1,62 @@
+﻿@model List<Students>
+<div class="card box-shadow border-1 mt-4">
+	<div class="card-header bg-secondary bg-gradient modal-lg-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Danh sách sinh viên</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<div class="row pb-3">
+			<div class="col-6"></div>
+			<div class="col-6 text-end">
+				<a class="btn btn-secondary" asp-action="Upsert" asp-controller="Student">
+					<i class="bi bi-plus-circle"></i> Tạo mới sinh viên
+				</a>
+			</div>
+		</div>
+		<table class="table table-bordered table-striped">
+
+
+			<thead>
+				<tr>
+					<th>Mã sinh viên</th>
+					<th>Tên sinh viên</th>
+					<th>Ngày sinh</th>
+					<th>Lớp</th>
+					<th>Khoa/Viện</th>
+					<th>Thao tác</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var obj in Model)
+				{
+					<tr>
+						<td>@obj.StudentCode</td>
+						<td>@obj.FullName</td>
+						<td>@obj.DateOfBirth.ToString("dd/MM/yyyy")</td>
+						<td>@obj.Classroom.NameClass</td>
+						<td>@obj.Faculty.faculty_name</td>
+						<td>
+							<div class="w-75 btn-group" role="group">
+								<a class="btn btn-secondary mx-2 rounded" asp-action="Upsert" asp-controller="Student" asp-route-id="@obj.Id">
+									<i class="bi bi-pencil-square"></i>
+									Sửa
+								</a>
+								<a class="btn btn btn-danger mx-2 rounded" asp-action="Delete" asp-controller="Student" asp-route-id="@obj.Id">
+									<i class="bi bi-trash-fill"></i>
+									Xóa
+								</a>
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+@section Scripts {
+	<script src="~/js/delete.js"></script>
+}

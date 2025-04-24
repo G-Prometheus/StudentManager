@@ -1,0 +1,108 @@
+﻿@model StudentVM
+
+<div class="card box-shadow border-1 mt-4">
+	<div class="card-header bg-secondary bg-gradient modal-lg-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">@(Model.Students.Id != 0 ? "Cập nhật" : "Thêm") sinh viên</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form method="post" class="row" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-10">
+					<div class="border p-3">
+						<input asp-for="Students.Id" type="hidden" />
+						<input asp-for="Students.ImageUrl" type="hidden" />
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.StudentCode" class="form-control border-0 shadow" required>
+							<label asp-for="Students.StudentCode" class="ms-2"></label>
+							<span asp-validation-for="Students.StudentCode" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.FullName" class="form-control border-0 shadow" required>
+							<label asp-for="Students.FullName" class="ms-2"></label>
+							<span asp-validation-for="Students.FullName" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.Gender" class="form-control border-0 shadow" required>
+							<label asp-for="Students.Gender" class="ms-2"></label>
+							<span asp-validation-for="Students.Gender" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.DateOfBirth" class="form-control border-0 shadow" required>
+							<label asp-for="Students.DateOfBirth" class="ms-2"></label>
+							<span asp-validation-for="Students.DateOfBirth" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.Email" class="form-control border-0 shadow" required>
+							<label asp-for="Students.Email" class="ms-2"></label>
+							<span asp-validation-for="Students.Email" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.PhoneNumber" class="form-control border-0 shadow" required>
+							<label asp-for="Students.PhoneNumber" class="ms-2"></label>
+							<span asp-validation-for="Students.PhoneNumber" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input asp-for="Students.CCCD" class="form-control border-0 shadow" required>
+							<label asp-for="Students.CCCD" class="ms-2"></label>
+							<span asp-validation-for="Students.CCCD" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<select asp-for="Students.ClassId" asp-items="@Model.ClassroomList" class="form-select border-0 shadow" required>
+								<option disabled selected>--Chọn lớp--</option>
+							</select>
+							<label asp-for="Students.ClassId" class="ms-2"></label>
+							<span asp-validation-for="Students.ClassId" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<select asp-for="Students.FacultyId" asp-items="@Model.FacultyList" class="form-select border-0 shadow" required>
+								<option disabled selected>--Chọn khoa/ngành--</option>
+							</select>
+							<label asp-for="Students.FacultyId" class="ms-2"></label>
+							<span asp-validation-for="Students.FacultyId" class="text-danger p-0"></span>
+						</div>
+
+						<div class="form-floating py-2 col-12">
+							<input type="file" name="file" class="form-control border-0 shadow">
+							<label asp-for="Students.ImageUrl" class="ms-2"></label>
+						</div>
+
+						<div class="row pt-2">
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-secondary form-control">
+									@(Model.Students.Id != 0 ? "Cập nhật" : "Thêm")
+								</button>
+							</div>
+							<div class="col-6 col-md-3">
+								<a class="btn btn-outline-secondary form-control" asp-action="Index" asp-controller="Student">
+									Quay lại
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<img src ="@Model.Students.ImageUrl" width="100%"
+						 style="border-radius: 5px; border:1px solid;" alt="Student Image" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
